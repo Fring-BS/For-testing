@@ -9,36 +9,79 @@ version = project.minecraft_version + "+" + project.mod_version
 group = project.maven_group
 
 repositories {
-    mavenCentral()
+    
+}
+
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all',
+                    '--output', file('src/generated/resources/').absolutePath,
+                    '--existing', file('src/main/resources/').absolutePath
+        }
+    }
+
+    mods {
+        "${project.mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+
+    
 }
 
 dependencies {
-    implementation 'net.neoforged:neoforge:${project.neoforge_version}'
 }
 
-processResources {
-    inputs.property "version", project.version
-    inputs.property "minecraft_version", project.minecraft_version
 
-    filesMatching("META-INF/neoforge.mods.toml") {
-        expand "version": project.version,
-                "minecraft_version": project.minecraft_version,
-                "neoforge_version": project.neoforge_version
+def replaceProperties = [
+        version                : project.version,
+        mod_version            : project.version,
+        minecraft_version      : project.minecraft_version,
+        minecraft_version_range: project.minecraft_version_range,
+        neo_version            : project.neo_version,
+        neoforge_version       : project.neo_version,
+        neo_version_range      : project.neo_version_range,
+        loader_version_range   : project.loader_version_range,
+        mod_id                 : project.mod_id,
+        mod_name               : project.mod_name,
+        mod_license            : project.mod_license,
+        mod_authors            : project.mod_authors,
+        mod_description        : project.mod_description,
+]
+
+processResources {
+    inputs.properties replaceProperties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand replaceProperties
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 21
+    it.options.encoding = 'UTF-8'
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
     withSourcesJar()
 }
 
 jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}"}
+    from('LICENSE') {
+        rename { "${it}_${project.archives_base_name}" }
     }
 }
