@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="eatinganimationid"
+version="1.21.4+2.0.0"
+displayName="Eating Animation Fork"
+authors="theone_ss, spusik_, PinkGoosik, DoctorNight1, Fring"
+description='''
+Unofficial fork of the Eating Animation mod for Minecraft 1.21.4-1.21.10. Adds simple sprite animation when you eat or drink something. Uses the new 1.21.4+ item model definition system. Ported to NeoForge!
+'''
+logoFile="eatinganimationicon.png"
+displayURL="https://github.com/Fring-BS/Eating-Animation-Fork"
+
+[[dependencies.eatinganimationid]]
+    modId="neoforge"
+    mandatory=true
+    versionRange="[21.4,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.eatinganimationid]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.21.4,1.21.11)"
+    ordering="NONE"
+    side="CLIENT"
