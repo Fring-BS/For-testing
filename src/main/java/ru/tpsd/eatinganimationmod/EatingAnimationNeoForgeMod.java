@@ -29,7 +29,7 @@ public class EatingAnimationNeoForgeMod {
                     ResourceLocation.fromNamespaceAndPath(MOD_ID, "resourcepacks/supporteatinganimation"),
                     PackType.CLIENT_RESOURCES,
                     Component.literal("Support Eating Animation"),
-                    PackSource.DEFAULT,
+                    PackSource.BUILT_IN,
                     true,
                     Pack.Position.TOP
                 );
