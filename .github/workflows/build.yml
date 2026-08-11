@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew build
       - name: build (Windows)
         if: ${{ runner.os == 'Windows' }}
-        run: .\gradlew.bat build
+        run: .gradlew.bat build
       - name: capture build artifacts
         if: ${{ runner.os == 'Linux' && matrix.java == '21' }}
         uses: actions/upload-artifact@v7
