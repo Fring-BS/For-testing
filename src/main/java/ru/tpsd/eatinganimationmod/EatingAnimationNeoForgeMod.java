@@ -28,7 +28,7 @@ public class EatingAnimationNeoForgeMod {
                 event.addPackFinders(
                     ResourceLocation.fromNamespaceAndPath(MOD_ID, "resourcepacks/supporteatinganimation"),
                     PackType.CLIENT_RESOURCES,
-                    Component.translatable("pack.eatinganimationid.supporteatinganimation"),
+                    Component.literal("§c§lEating Animation Fork\n§c§lmods support"),
                     PackSource.BUILT_IN,
                     true,
                     Pack.Position.TOP
