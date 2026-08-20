@@ -2,6 +2,6 @@
     "pack": {
         "description": "Eating Animation Fork mods support",
         "pack_format": 46,
-        "supported_formats": [46, 75]
+        "supported_formats": [46, 69]
     }
 }
